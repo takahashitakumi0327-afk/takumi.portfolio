@@ -1,0 +1,516 @@
+<!DOCTYPE html>
+
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>髙橋拓海 | フリーランスクリエイター</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Noto+Sans+JP:wght@300;400;500&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+–bg: #f4f3f0;
+–ink: #1c1c1a;
+–mid: #888880;
+–line: #d8d7d2;
+–white: #faf9f7;
+–mark: #1c1c1a;
+–accent: #1e3560;
+–accent-light: #e8edf5;
+}
+
+/* ── DARK MODE ── */
+body.dark {
+–bg: #0f1117;
+–ink: #e8e7e3;
+–mid: #666660;
+–line: #252830;
+–white: #181b23;
+–mark: #e8e7e3;
+–accent: #4a72b8;
+–accent-light: #1a2035;
+}
+
+body {
+background: var(–bg);
+color: var(–ink);
+font-family: ‘Noto Sans JP’, sans-serif;
+font-weight: 300;
+line-height: 1.8;
+transition: background 0.4s, color 0.4s;
+}
+
+.wrap {
+max-width: 760px;
+margin: 0 auto;
+padding: 0 32px;
+}
+
+/* HEADER */
+header { padding: 48px 0 0; }
+.header-inner {
+display: flex;
+justify-content: space-between;
+align-items: baseline;
+padding-bottom: 20px;
+border-bottom: 1px solid var(–ink);
+}
+.site-name {
+font-family: ‘DM Mono’, monospace;
+font-size: 13px;
+letter-spacing: 0.08em;
+color: var(–mid);
+}
+nav { display: flex; gap: 28px; }
+nav a {
+font-family: ‘DM Mono’, monospace;
+font-size: 12px;
+color: var(–mid);
+text-decoration: none;
+letter-spacing: 0.06em;
+transition: color 0.2s;
+}
+nav a:hover { color: var(–accent); }
+
+/* THEME TOGGLE */
+.theme-toggle {
+background: none;
+border: 1px solid var(–line);
+color: var(–mid);
+font-family: ‘DM Mono’, monospace;
+font-size: 11px;
+letter-spacing: 0.08em;
+padding: 5px 12px;
+cursor: pointer;
+transition: all 0.2s;
+margin-left: 8px;
+}
+.theme-toggle:hover { border-color: var(–accent); color: var(–accent); }
+
+/* TYPEWRITER */
+.typewriter {
+display: inline-block;
+overflow: hidden;
+white-space: nowrap;
+border-right: 2px solid var(–accent);
+animation: typing 1.1s steps(4, end) 0.2s both, blink 0.7s step-end 1.3s 4;
+color: var(–accent);
+}
+@keyframes typing {
+from { width: 0 }
+to   { width: 100% }
+}
+@keyframes blink {
+50% { border-color: transparent }
+}
+.typewriter.done { border-right: none; }
+
+/* MARK HIGHLIGHT — hover で下線が左から右に引かれる */
+.mark {
+position: relative;
+display: inline;
+}
+.mark::after {
+content: ‘’;
+position: absolute;
+left: 0; bottom: -1px;
+width: 0; height: 1px;
+background: var(–accent);
+transition: width 0.35s ease;
+}
+.mark:hover::after { width: 100%; }
+
+/* HERO */
+#hero {
+padding: 80px 0 72px;
+border-bottom: 1px solid var(–line);
+}
+.hero-label {
+font-family: ‘DM Mono’, monospace;
+font-size: 11px;
+color: var(–mid);
+letter-spacing: 0.15em;
+margin-bottom: 28px;
+}
+.hero-name {
+font-family: ‘DM Serif Display’, serif;
+font-size: clamp(52px, 10vw, 88px);
+font-weight: 400;
+line-height: 1;
+letter-spacing: -0.02em;
+color: var(–ink);
+margin-bottom: 32px;
+}
+.hero-name span {
+display: block;
+font-style: italic;
+font-size: 0.52em;
+color: var(–mid);
+margin-top: 10px;
+letter-spacing: 0.01em;
+}
+.hero-bio {
+font-size: 15px;
+color: #555;
+max-width: 520px;
+line-height: 2;
+}
+.hero-tags {
+display: flex;
+gap: 10px;
+flex-wrap: wrap;
+margin-top: 28px;
+}
+.tag {
+font-family: ‘DM Mono’, monospace;
+font-size: 11px;
+color: var(–mid);
+border: 1px solid var(–line);
+padding: 6px 14px;
+letter-spacing: 0.08em;
+transition: all 0.2s;
+}
+.tag:hover { border-color: var(–accent); color: var(–accent); }
+
+/* SECTIONS */
+.section {
+padding: 64px 0;
+border-bottom: 1px solid var(–line);
+}
+.section-head {
+display: flex;
+align-items: baseline;
+gap: 16px;
+margin-bottom: 40px;
+}
+.section-num {
+font-family: ‘DM Mono’, monospace;
+font-size: 11px;
+color: var(–accent);
+letter-spacing: 0.1em;
+}
+.section-title {
+font-family: ‘DM Serif Display’, serif;
+font-size: 26px;
+font-weight: 400;
+color: var(–ink);
+}
+
+/* ABOUT */
+.about-text { font-size: 15px; color: #555; line-height: 2.1; }
+.about-text p + p { margin-top: 20px; }
+.about-text strong { color: var(–ink); font-weight: 500; }
+
+/* SERVICES */
+.service-list { display: flex; flex-direction: column; }
+.service-item {
+display: grid;
+grid-template-columns: 160px 1fr;
+gap: 24px;
+padding: 28px 0;
+padding-left: 0;
+border-bottom: 1px solid var(–line);
+border-left: 2px solid transparent;
+align-items: start;
+transition: padding-left 0.3s ease, border-left-color 0.3s ease;
+cursor: default;
+}
+.service-item:hover { padding-left: 14px; border-left-color: var(–accent); }
+.service-item:first-child { border-top: 1px solid var(–line); }
+.service-name {
+font-family: ‘DM Serif Display’, serif;
+font-size: 18px;
+color: var(–ink);
+padding-top: 2px;
+}
+.service-desc { font-size: 14px; color: #666; line-height: 1.9; }
+
+/* SKILLS */
+.skill-rows { display: flex; flex-direction: column; gap: 24px; }
+.skill-row {
+display: grid;
+grid-template-columns: 110px 1fr;
+gap: 20px;
+align-items: start;
+}
+.skill-cat {
+font-family: ‘DM Mono’, monospace;
+font-size: 11px;
+color: var(–mid);
+letter-spacing: 0.08em;
+padding-top: 6px;
+}
+.skill-tags { display: flex; flex-wrap: wrap; gap: 8px; }
+.skill-tag {
+font-size: 13px;
+color: #666;
+background: var(–white);
+border: 1px solid var(–line);
+padding: 5px 14px;
+transition: all 0.2s;
+}
+.skill-tag:hover { border-color: var(–accent); color: var(–accent); background: var(–accent-light); }
+
+.note-box {
+background: var(–accent-light);
+border: 1px solid var(–line);
+border-left: 3px solid var(–accent);
+padding: 28px 32px;
+margin-top: 40px;
+}
+.note-box p { font-size: 14px; color: #666; line-height: 2; }
+.note-box p + p { margin-top: 14px; }
+.note-box strong { color: var(–ink); font-weight: 500; }
+
+/* CONTACT */
+#contact { padding: 72px 0 80px; }
+.contact-msg {
+font-family: ‘DM Serif Display’, serif;
+font-size: clamp(32px, 6vw, 52px);
+font-weight: 400;
+line-height: 1.25;
+margin-bottom: 32px;
+letter-spacing: -0.01em;
+}
+.contact-msg em { font-style: italic; color: var(–mid); }
+.contact-sub {
+font-size: 14px;
+color: #777;
+line-height: 1.9;
+margin-bottom: 36px;
+max-width: 480px;
+}
+.contact-btn {
+display: inline-block;
+background: var(–accent);
+color: #fff;
+font-family: ‘DM Mono’, monospace;
+font-size: 12px;
+letter-spacing: 0.12em;
+padding: 16px 40px;
+text-decoration: none;
+position: relative;
+overflow: hidden;
+transition: color 0.35s;
+}
+.contact-btn::before {
+content: ‘’;
+position: absolute;
+inset: 0;
+background: #0f2040;
+transform: translateX(-101%);
+transition: transform 0.35s ease;
+z-index: 0;
+}
+.contact-btn:hover::before { transform: translateX(0); }
+.contact-btn:hover { color: #fff; }
+.contact-btn span { position: relative; z-index: 1; }
+
+/* FOOTER */
+footer {
+padding: 24px 0;
+border-top: 1px solid var(–ink);
+display: flex;
+justify-content: space-between;
+}
+footer span {
+font-family: ‘DM Mono’, monospace;
+font-size: 11px;
+color: var(–mid);
+letter-spacing: 0.06em;
+}
+
+/* FADE */
+.fade {
+opacity: 0;
+transform: translateY(14px);
+transition: opacity 0.7s ease, transform 0.7s ease;
+}
+.fade.in { opacity: 1; transform: none; }
+
+@media (max-width: 600px) {
+.wrap { padding: 0 20px; }
+.header-inner { flex-direction: column; gap: 14px; }
+.service-item { grid-template-columns: 1fr; gap: 8px; }
+.skill-row { grid-template-columns: 1fr; gap: 6px; }
+footer { flex-direction: column; gap: 6px; }
+}
+</style>
+
+</head>
+<body>
+<div class="wrap">
+
+  <header>
+    <div class="header-inner">
+      <span class="site-name">takahashi-takumi</span>
+      <nav>
+        <a href="#about">About</a>
+        <a href="#services">Services</a>
+        <a href="#skills">Skills</a>
+        <a href="#contact">Contact</a>
+        <button class="theme-toggle" id="themeBtn" aria-label="テーマ切り替え">○ light</button>
+      </nav>
+    </div>
+  </header>
+
+  <section id="hero">
+    <p class="hero-label"><span class="typewriter" id="tw">Freelance Creator / Crowdworks</span></p>
+    <h1 class="hero-name">
+      髙橋拓海
+      <span>Takumi Takahashi</span>
+    </h1>
+    <p class="hero-bio">
+      Webデザイン・ライティング・動画編集の3つを手がけるフリーランスクリエイター。
+      まだキャリアのスタート地点ですが、丁寧に、誠実に取り組みます。
+    </p>
+    <div class="hero-tags">
+      <span class="tag">Web Design</span>
+      <span class="tag">Writing</span>
+      <span class="tag">Video Edit</span>
+    </div>
+  </section>
+
+  <section id="about" class="section fade">
+    <div class="section-head">
+      <span class="section-num">01</span>
+      <h2 class="section-title">About</h2>
+    </div>
+    <div class="about-text">
+      <p>
+        Webデザイン・ライティング・動画編集と、<strong>3つの領域を一人でカバー</strong>できるクリエイターです。
+        まだ実績を積んでいる段階ですが、それぞれ基礎はしっかり身についています。
+      </p>
+      <p>
+        このプロフィールページは<strong>自分でゼロから作りました</strong>。
+        「どんなものが作れるか」を実際に見ていただくのが、<span class="mark">一番正直な自己紹介</span>だと思っています。
+      </p>
+      <p>
+        小さな案件・単発のご依頼も大歓迎です。
+        まずはお気軽にメッセージをください。
+      </p>
+    </div>
+  </section>
+
+  <section id="services" class="section fade">
+    <div class="section-head">
+      <span class="section-num">02</span>
+      <h2 class="section-title">Services</h2>
+    </div>
+    <div class="service-list">
+      <div class="service-item">
+        <div class="service-name">Web Design</div>
+        <div class="service-desc">
+          LP・ポートフォリオ・プロフィールページなど、シンプルで見やすいWebページを制作します。
+          HTML / CSS / JavaScriptを使って、このページのようなデザインが作れます。
+        </div>
+      </div>
+      <div class="service-item">
+        <div class="service-name">Writing</div>
+        <div class="service-desc">
+          商品説明文・記事・SNS投稿文など、読みやすく伝わる文章を書きます。
+          基礎的な英日翻訳にも対応しています。
+        </div>
+      </div>
+      <div class="service-item">
+        <div class="service-name">Video Edit</div>
+        <div class="service-desc">
+          SNS向けショート動画・紹介映像のカット編集・テロップ入れ・BGM調整など、
+          基本的な動画編集を承ります。
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="skills" class="section fade">
+    <div class="section-head">
+      <span class="section-num">03</span>
+      <h2 class="section-title">Skills</h2>
+    </div>
+    <div class="skill-rows">
+      <div class="skill-row">
+        <span class="skill-cat">Design</span>
+        <div class="skill-tags">
+          <span class="skill-tag">HTML / CSS</span>
+          <span class="skill-tag">JavaScript</span>
+          <span class="skill-tag">Figma</span>
+          <span class="skill-tag">Canva</span>
+        </div>
+      </div>
+      <div class="skill-row">
+        <span class="skill-cat">Writing</span>
+        <div class="skill-tags">
+          <span class="skill-tag">記事・コピー作成</span>
+          <span class="skill-tag">商品説明文</span>
+          <span class="skill-tag">基礎的な英語翻訳</span>
+        </div>
+      </div>
+      <div class="skill-row">
+        <span class="skill-cat">Video</span>
+        <div class="skill-tags">
+          <span class="skill-tag">Premiere Pro</span>
+          <span class="skill-tag">CapCut</span>
+          <span class="skill-tag">カット・テロップ編集</span>
+        </div>
+      </div>
+    </div>
+    <div class="note-box">
+      <p>
+        <strong>正直なところ</strong>、各分野のプロと比べると経験値はまだ少ないです。
+        ただ、基礎的な作業はきちんとこなせますし、わからないことがあればすぐ調べて対応します。
+      </p>
+      <p>
+        「まず試してみたい」「コストを抑えたい」という方に向いていると思います。
+        できないことは正直にお伝えします。
+      </p>
+    </div>
+  </section>
+
+  <section id="contact" class="fade">
+    <div class="section-head">
+      <span class="section-num">04</span>
+      <h2 class="section-title">Contact</h2>
+    </div>
+    <p class="contact-msg">
+      まず、<em>気軽に</em><br>相談してください。
+    </p>
+    <p class="contact-sub">
+      どんな小さなご依頼でも構いません。「こんなことできますか？」という質問だけでも大歓迎です。返信は24時間以内を目安にしています。
+    </p>
+    <a href="#" class="contact-btn"><span>Crowdworks でメッセージを送る</span></a>
+  </section>
+
+  <footer>
+    <span>髙橋拓海</span>
+    <span>© 2025</span>
+  </footer>
+
+</div>
+<script>
+  // Scroll fade-in
+  const obs = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) { e.target.classList.add('in'); obs.unobserve(e.target); }
+    });
+  }, { threshold: 0.1 });
+  document.querySelectorAll('.fade').forEach(el => obs.observe(el));
+
+// Typewriter: remove cursor after animation
+const tw = document.getElementById(‘tw’);
+tw.addEventListener(‘animationend’, (e) => {
+if (e.animationName === ‘blink’) tw.classList.add(‘done’);
+});
+
+// Dark mode toggle
+const btn = document.getElementById(‘themeBtn’);
+const body = document.body;
+btn.addEventListener(‘click’, () => {
+body.classList.toggle(‘dark’);
+const isDark = body.classList.contains(‘dark’);
+btn.textContent = isDark ? ‘● dark’ : ‘○ light’;
+});
+</script>
+
+</body>
+</html>
